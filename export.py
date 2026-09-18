@@ -16,8 +16,8 @@ def agg(key, mask, g='male'):
     c = df[(df.gender==g) & mask].groupby('year')['count'].sum().reindex(yrs).fillna(0)
     sh = c/TOT.xs(g,level=1).reindex(yrs)*10000
     AGG[key] = ([int(v) for v in c], [round(float(v),1) for v in sh])
-agg('호포함:male', df.name.str.contains('호',na=False))
-agg('용룡포함:male', df.name.str.contains('용|룡',na=False))
+agg('호끝:male', df.name.str.endswith('호',na=False))
+agg('용룡끝:male', df.name.str.endswith(('용','룡'),na=False))
 
 out={}
 for w in want:
