@@ -109,11 +109,19 @@ PERSON_MISS = [
  ("현진","male","류현진","2013 MLB 데뷔 해 ×1.08"),
  ("우진","male","김우진(양궁 3관왕)","2024년 ×1.1"),
 ]
+CONTROL = [
+ ("호","+30.9%","+16.3%","+2.7%"),("아","+19.4%","+14.2%","+6.6%"),("윤","+11.7%","−4.8%","+4.2%"),
+ ("하","+11.3%","−2.6%","+8.1%"),("준","+7.7%","−4.8%","−0.9%"),("도","+7.4%","−0.7%","+6.9%"),
+ ("우","+3.5%","+1.3%","+2.1%"),("서","+2.6%","−2.8%","−0.5%"),("은","+0.6%","+6.9%","+1.8%"),
+ ("현","−4.2%","+3.7%","−5.0%"),("민","−6.8%","−15.2%","−6.0%"),("진","−8.2%","+1.5%","−1.1%"),
+]
 ZODIAC = [
- ("백호","male",2010,"경인년 白虎","2010년은 흰 호랑이의 해"),
- ("범","male",2010,"호랑이해","2010 경인년, 2022 임인년 두 번 반등"),
- ("태호","male",2010,"호랑이해","‘호’ 돌림이 2010년에 함께 늘었다"),
- ("미르","male",2012,"용의 해","2012 흑룡, 2024 청룡 두 번 급등"),
+ ("‘호’ 전체|호포함","male",[2010,2022],"‘호’가 들어간 남아 이름 합계","1만 명당 점유율. 두 호랑이해가 19년 중 1·2위"),
+ ("범","male",[2010,2022],"호랑이의 순우리말","경인년과 임인년에 각각 반등"),
+ ("백호","male",[2010,2022],"경인년 白虎","흰 호랑이는 60년에 한 번. 2022년에는 4명"),
+ ("‘용·룡’ 전체|용룡포함","male",[2012,2024],"‘용·룡’이 들어간 남아 이름 합계","길게는 감소 추세인데 용의 해마다 반등한다"),
+ ("미르","male",[2012,2024],"용의 순우리말","임진년과 갑진년에 각각 3배, 4배"),
+ ("태호","male",[2010,2022],"‘호’ 돌림의 전통형","2010년 +67%, 2022년 +19%로 반응이 약해졌다"),
 ]
 UNKNOWN = [
  ("하율","male",2009),("대겸","male",2011),("나겸","female",2011),
@@ -142,11 +150,16 @@ body.append('''<h1>갑자기 많아진 이름</h1>
 def cards(lst):
     out=['<div class="grid">']
     for n,g,yr,work,det in lst:
-        key=f"{n}:{g}"
+        disp, _, raw = n.partition('|')
+        key=f"{raw or disp}:{g}"
+        n=disp
+        yrs_ = yr if isinstance(yr,(list,tuple)) else [yr]
+        marks = ','.join(str(v) for v in yrs_)
+        ylab = ', '.join(str(v) for v in yrs_)
         out.append(f'''<div class="card" data-g="{g}">
-  <div class="top"><span class="nm">{n}</span><span class="chip {"m" if g=="male" else "f"}">{"남아" if g=="male" else "여아"}</span><span class="mult" data-mult="{key}|{yr}"></span></div>
-  <figure><svg data-k="{key}" data-mark="{yr}" viewBox="0 0 300 100" role="img" aria-label="{n} 연도별 추이"></svg></figure>
-  <div class="cap"><span class="work">{work}</span> <span class="yr">{yr}</span><br>{det}</div>
+  <div class="top"><span class="nm">{n}</span><span class="chip {"m" if g=="male" else "f"}">{"남아" if g=="male" else "여아"}</span><span class="mult" data-mult="{key}|{marks}"></span></div>
+  <figure><svg data-k="{key}" data-mark="{marks}" viewBox="0 0 300 100" role="img" aria-label="{n} 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">{work}</span> <span class="yr">{ylab}</span><br>{det}</div>
 </div>''')
     out.append('</div>')
     return '\n'.join(out)
@@ -168,8 +181,19 @@ rows.append('</tbody></table></div>')
 body.append('\n'.join(rows))
 
 body.append('<h2><span class="n">03</span>호랑이해와 용의 해</h2>')
-body.append('<p class="sub">가장 크게 늘어난 이름은 작품과 무관했습니다. 흰 호랑이의 해인 2010년 경인년에 ‘백호’가 22배가 됐고, 용의 해인 2012년과 2024년에 용의 우리말인 ‘미르’가 두 번 늘었습니다. 급증을 모두 작품 때문이라고 읽으면 이런 경우를 놓칩니다.</p>')
+body.append('<p class="sub">가장 크게 늘어난 이름은 작품과 무관했습니다. 띠에 맞춰 짓는 관습이 12년 주기로 돌아옵니다. 개별 이름이 아니라 <b>‘호’가 들어간 남아 이름 전체</b>를 합산해도 두 호랑이해가 19년 중 증가율 1위와 2위입니다. 점선 두 개가 같은 띠의 두 해입니다.</p>')
 body.append(cards(ZODIAC))
+
+body.append('<p class="sub" style="margin-top:34px">다른 글자로 같은 계산을 하면 이 정도로 움직이지 않습니다. 띠와 무관한 흔한 글자들은 호랑이해에도 평소와 비슷합니다.</p>')
+rows=['<div class="tbox"><table style="min-width:460px"><thead><tr><th>글자</th><th>2010년 경인년</th><th>2022년 임인년</th><th>나머지 17년 중앙값</th></tr></thead><tbody>']
+for ch, a, b_, med in CONTROL:
+    em=' style="font-weight:800;color:var(--male)"' if ch=='호' else ''
+    rows.append(f'<tr><td{em}>{ch}</td><td class="num"{em}>{a}</td><td class="num"{em}>{b_}</td><td class="num">{med}</td></tr>')
+rows.append('</tbody></table></div>')
+body.append('\n'.join(rows))
+
+body.append('''<div class="note"><b>2022년은 왜 2010년의 절반인가.</b> 세 가지가 겹칩니다. 첫째, 2010년에는 띠에 맞춘 출산 자체가 있었습니다. 출생아 수가 2009년 -3.1%에서 2010년 +5.3%로 돌아섰고, 그 뒤로 이만큼 늘어난 해는 없습니다. 둘째, ‘호’ 돌림의 전통형이 2020년대에는 이미 사양세였습니다. 2009년과 2021년에 각각 30명을 넘긴 이름 28개를 같은 기준으로 보면 중앙값이 2010년 +34.9%, 2022년 +11.1%인데, 태호(+67%→+19%)나 수호(+39%→+0.2%)처럼 한자 느낌이 강한 이름일수록 반응이 사라졌습니다. 셋째, 흰 호랑이는 60년에 한 번이라 2010년에만 따로 홍보됐습니다. ‘백호’라는 이름 자체가 2010년에 22배가 됐다가 2022년에는 4명에 그쳤습니다. 다만 이것이 주된 이유는 아닙니다. ‘백호’를 빼고 계산해도 2010년 증가율은 +29.7%로 거의 그대로입니다.</div>''')
+body.append('<p class="sub" style="margin-top:30px">띠 작명 자체가 약해진 것은 아닙니다. 용의 해는 오히려 최근이 더 셉니다. ‘용·룡’이 들어간 이름 전체가 2012년 +25.9%, 2024년 +32.3%로 늘었고(나머지 해 중앙값 -9.9%), ‘미르’는 2012년 3배, 2024년 4배가 됐습니다. 2022년에도 은호(690→911명), 리호(121→196명)처럼 요즘 작명 취향에 맞는 ‘호’ 이름은 그대로 반응했습니다.</p>')
 
 body.append('<h2><span class="n">04</span>원인을 못 찾은 이름</h2>')
 body.append('<p class="sub">같은 기준에 걸렸지만 맞아떨어지는 작품을 찾지 못한 이름입니다. ‘겸’ 돌림(대겸, 나겸, 다겸, 보겸)은 2010년대 내내 유행했는데, 특정 연도에만 몰린 이유는 확인하지 못했습니다.</p>')
@@ -205,7 +229,7 @@ const NS='http://www.w3.org/2000/svg';
 const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
 
 function draw(svg){
-  const key=svg.dataset.k, mark=+svg.dataset.mark, mini=svg.dataset.mini==='1';
+  const key=svg.dataset.k, marks=svg.dataset.mark.split(',').map(Number), mini=svg.dataset.mini==='1';
   const s=D.share[key], c=D.count[key];
   if(!s||!c) return;
   const male=key.split(':')[1]==='male';
@@ -215,25 +239,25 @@ function draw(svg){
   const max=Math.max.apply(null,s)*1.14 || 1;
   const X=i=>PL+i*(W-PL-PR)/(N-1);
   const Y=v=>H-PB-(v/max)*(H-PT-PB);
-  const mi=YRS.indexOf(mark);
+  const MI=marks.map(m=>YRS.indexOf(m)).filter(i=>i>=0);
 
-  if(!mini && mi>=0)
-    svg.appendChild(el('line',{x1:X(mi),x2:X(mi),y1:PT-8,y2:H-PB,stroke:'var(--mark)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.9}));
+  if(!mini) MI.forEach(mi=>
+    svg.appendChild(el('line',{x1:X(mi),x2:X(mi),y1:PT-8,y2:H-PB,stroke:'var(--mark)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.9})));
   svg.appendChild(el('line',{x1:PL,x2:W-PR,y1:H-PB,y2:H-PB,stroke:'var(--hair)','stroke-width':1}));
 
   const pts=s.map((v,i)=>X(i)+','+Y(v)).join(' ');
   svg.appendChild(el('polygon',{points:PL+','+(H-PB)+' '+pts+' '+(W-PR)+','+(H-PB),fill:FILL,stroke:'none'}));
   svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:LINE,'stroke-width':mini?1.4:2,'stroke-linejoin':'round','stroke-linecap':'round'}));
 
-  if(mi>=0){
+  MI.forEach(mi=>{
     svg.appendChild(el('circle',{cx:X(mi),cy:Y(s[mi]),r:mini?2.4:4,fill:LINE,stroke:'var(--surface)','stroke-width':2}));
     if(!mini){
       const t=el('text',{x:X(mi),y:Y(s[mi])-10,'text-anchor':mi>N-4?'end':(mi<3?'start':'middle'),
         fill:'var(--ink)','font-size':11,'font-weight':700,
         stroke:'var(--surface)','stroke-width':3.5,'stroke-linejoin':'round','paint-order':'stroke'});
-      t.textContent=c[mi].toLocaleString()+'명'; svg.appendChild(t);
+      t.textContent=(key.endsWith('포함:male')? s[mi].toFixed(0)+'/만' : c[mi].toLocaleString()+'명'); svg.appendChild(t);
     }
-  }
+  });
   if(!mini){
     [0,N-1].forEach((i,k)=>{
       const t=el('text',{x:X(i),y:H-5,'text-anchor':k?'end':'start',fill:'var(--ink3)','font-size':10});
@@ -253,10 +277,15 @@ function draw(svg){
 document.querySelectorAll('svg[data-k]').forEach(draw);
 
 function ratio(key,yr){const c=D.count[key]; if(!c) return {prev:0,cur:0,x:null};
-  const i=YRS.indexOf(yr), p=c[i-1]||0; return {prev:p,cur:c[i],x:p?(c[i]/p):null};}
+  const b=key.endsWith('포함:male')?D.share[key]:c;   // 집계는 점유율 기준
+  const i=YRS.indexOf(yr), p=c[i-1]||0;
+  return {prev:p,cur:c[i],x:b[i-1]?(b[i]/b[i-1]):null};}
 document.querySelectorAll('[data-mult]').forEach(e=>{
-  const a=e.dataset.mult.split('|'), r=ratio(a[0],+a[1]);
-  e.innerHTML=r.x?('전년 <b>×'+r.x.toFixed(1)+'</b>'):'전년 <b>0명</b>';
+  const a=e.dataset.mult.split('|'), ys=a[1].split(',').map(Number);
+  const parts=ys.map(y=>{const r=ratio(a[0],y);
+    const v=(r.x && r.cur>=20)?('<b>×'+r.x.toFixed(1)+'</b>'):('<b>'+r.cur.toLocaleString()+'명</b>');
+    return ys.length>1 ? (y+' '+v) : ('전년 '+v);});
+  e.innerHTML=parts.join(' · ');
 });
 document.querySelectorAll('[data-delta]').forEach(e=>{
   const a=e.dataset.delta.split('|'), r=ratio(a[0],+a[1]);
