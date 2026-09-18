@@ -1,0 +1,333 @@
+<title>갑자기 많아진 이름</title>
+<style>
+:root{
+  --surface:#ffffff; --panel:#f5f7fa; --ink:#151a21; --ink2:#5b6572; --ink3:#8a94a3;
+  --hair:#e3e8ef; --accent:#3b82f6; --accent-soft:rgba(59,130,246,.14); --mark:#c9761f;
+  --chip:#eef2f7;
+  --male:#2563eb; --male-soft:rgba(37,99,235,.13); --male-chip:#e7effd;
+  --female:#d6336c; --female-soft:rgba(214,51,108,.12); --female-chip:#fceaf1;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --surface:#11151b; --panel:#1a2029; --ink:#e7edf5; --ink2:#9aa5b4; --ink3:#6c7787;
+  --hair:#28303b; --accent:#5b9cf8; --accent-soft:rgba(91,156,248,.18); --mark:#dca059;
+  --chip:#222a35;
+  --male:#4a90e8; --male-soft:rgba(74,144,232,.20); --male-chip:#1b2a3d;
+  --female:#d4568f; --female-soft:rgba(212,86,143,.18); --female-chip:#341f2b;
+}}
+:root[data-theme="dark"]{
+  --surface:#11151b; --panel:#1a2029; --ink:#e7edf5; --ink2:#9aa5b4; --ink3:#6c7787;
+  --hair:#28303b; --accent:#5b9cf8; --accent-soft:rgba(91,156,248,.18); --mark:#dca059;
+  --chip:#222a35;
+  --male:#4a90e8; --male-soft:rgba(74,144,232,.20); --male-chip:#1b2a3d;
+  --female:#d4568f; --female-soft:rgba(212,86,143,.18); --female-chip:#341f2b;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--surface); color:var(--ink); margin:0;
+  font-family:'KoddiUD OnGothic',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding-inline:20px; padding-block:56px 72px}
+h1{font-size:clamp(28px,5vw,40px); line-height:1.15; margin:0 0 14px; letter-spacing:-.02em; text-wrap:balance; font-weight:800}
+.lede{color:var(--ink2); max-width:62ch; margin:0 0 8px; font-size:16px}
+.lede b{color:var(--ink)}
+.meta{color:var(--ink3); font-size:13px; margin-top:18px; font-variant-numeric:tabular-nums}
+.legend{display:flex; align-items:center; gap:7px; font-size:13px; color:var(--ink2); margin:20px 0 0}
+.legend .sw{width:11px; height:11px; border-radius:2px; display:inline-block}
+.legend .sw.m{background:var(--male)}
+.legend .sw.f{background:var(--female); margin-left:12px}
+.rule{height:1px; background:var(--hair); border:0; margin:44px 0 0}
+h2{font-size:21px; margin:46px 0 6px; letter-spacing:-.01em; font-weight:800}
+h2 .n{color:var(--accent); font-weight:800; margin-right:10px; font-size:15px; vertical-align:2px}
+.sub{color:var(--ink2); max-width:66ch; margin:0 0 26px; font-size:14.5px}
+.sub b{color:var(--ink)}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:28px 24px}
+.card{display:flex; flex-direction:column; gap:7px}
+.card .top{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+.nm{font-size:19px; font-weight:800; letter-spacing:-.01em}
+.chip{font-size:11px; color:var(--ink2); background:var(--chip); border-radius:3px; padding:2px 6px; letter-spacing:.04em; font-weight:700}
+.chip.m{color:var(--male); background:var(--male-chip)}
+.chip.f{color:var(--female); background:var(--female-chip)}
+.mult{margin-left:auto; font-size:12.5px; color:var(--ink3); font-variant-numeric:tabular-nums}
+.mult b{font-weight:800; font-size:13.5px}
+.card[data-g="male"] .mult b{color:var(--male)}
+.card[data-g="female"] .mult b{color:var(--female)}
+figure{margin:0}
+svg{display:block; width:100%; height:auto; max-width:100%; overflow:visible}
+.cap{font-size:13px; color:var(--ink2); line-height:1.5}
+.cap .work{color:var(--ink); font-weight:700}
+.cap .yr{color:var(--mark); font-weight:700; font-variant-numeric:tabular-nums}
+.tbox{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:14px; min-width:520px}
+th,td{text-align:left; padding:10px 12px 10px 0; border-bottom:1px solid var(--hair); vertical-align:middle}
+th{font-size:11.5px; letter-spacing:.06em; color:var(--ink3); font-weight:700}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink2)}
+.note{background:var(--panel); border-radius:6px; padding:18px 20px; font-size:13.5px; color:var(--ink2); margin-top:30px; max-width:72ch}
+.note b{color:var(--ink)}
+#tip{position:fixed; pointer-events:none; opacity:0; transition:opacity .09s;
+  background:var(--ink); color:var(--surface); font-size:12px; padding:6px 9px; border-radius:4px;
+  font-variant-numeric:tabular-nums; z-index:9; white-space:nowrap; line-height:1.45}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="wrap">
+<h1>갑자기 많아진 이름</h1>
+<p class="lede">2008~2026년 출생신고 이름 36만 건을 연도별로 세어, 전년보다 갑자기 늘어난 이름을 찾았습니다. 상당수가 그해 방영하거나 개봉한 작품의 <b>등장인물</b> 이름이었습니다. 반면 아이돌이나 운동선수처럼 <b>실존 인물</b>의 이름은 거의 늘지 않았습니다.</p>
+<p class="lede">출생아 수가 19년 사이 절반 아래로 줄었으므로 모든 그래프는 <b>출생아 1만 명당 비율</b>로 그렸습니다. 명수는 그래프 위에 커서를 올리면 나옵니다.</p>
+<p class="meta">출처 koreanname.me(원자료: 대법원 전자가족관계등록시스템) · 2026년은 9월까지의 부분 집계 · 아래는 시점이 겹친다는 관찰이며 인과의 증명이 아닙니다</p>
+<p class="legend"><span class="sw m"></span>남아<span class="sw f"></span>여아</p>
+<hr class="rule">
+<h2><span class="n">01</span>등장인물의 이름</h2>
+<p class="sub">점선은 이름이 늘어난 해입니다. 출생신고는 태어난 지 한 달 안에 하므로 방영 중이거나 직후에 태어난 아기에게 곧바로 반영됩니다. 연말에 방영한 <b>재벌집 막내아들</b>의 ‘도준’이 이듬해에 늘어난 것이 그 시차를 보여줍니다. 한 작품에서 <b>여러 인물이 함께</b> 늘기도 합니다. 해를 품은 달은 남녀 주인공 ‘훤’과 ‘연우’가 같은 해에 올랐고, 내 딸 서영이는 ‘우재’와 함께 ‘성재’(155→223명), ‘호정’(46→61명)이 올랐습니다.</p>
+<div class="grid">
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">주원</span><span class="chip m">남아</span><span class="mult" data-mult="주원:male|2011"></span></div>
+  <figure><svg data-k="주원:male" data-mark="2011" viewBox="0 0 300 100" role="img" aria-label="주원 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">제빵왕 김탁구</span> <span class="yr">2011</span><br>KBS2 · 2010.6~9 · 최고 50.8% · 배우 주원</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">훤</span><span class="chip m">남아</span><span class="mult" data-mult="훤:male|2012"></span></div>
+  <figure><svg data-k="훤:male" data-mark="2012" viewBox="0 0 300 100" role="img" aria-label="훤 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">해를 품은 달</span> <span class="yr">2012</span><br>MBC · 2012.1~3 · 이훤</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">연우</span><span class="chip f">여아</span><span class="mult" data-mult="연우:female|2012"></span></div>
+  <figure><svg data-k="연우:female" data-mark="2012" viewBox="0 0 300 100" role="img" aria-label="연우 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">해를 품은 달</span> <span class="yr">2012</span><br>MBC · 2012.1~3 · 허연우</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">우재</span><span class="chip m">남아</span><span class="mult" data-mult="우재:male|2013"></span></div>
+  <figure><svg data-k="우재:male" data-mark="2013" viewBox="0 0 300 100" role="img" aria-label="우재 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">내 딸 서영이</span> <span class="yr">2013</span><br>KBS2 주말 · ~2013.3 · 평균 40.7% · 강우재</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">예승</span><span class="chip f">여아</span><span class="mult" data-mult="예승:female|2013"></span></div>
+  <figure><svg data-k="예승:female" data-mark="2013" viewBox="0 0 300 100" role="img" aria-label="예승 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">7번방의 선물</span> <span class="yr">2013</span><br>영화 · 2013.1 개봉 · 딸 예승</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">시진</span><span class="chip m">남아</span><span class="mult" data-mult="시진:male|2016"></span></div>
+  <figure><svg data-k="시진:male" data-mark="2016" viewBox="0 0 300 100" role="img" aria-label="시진 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">태양의 후예</span> <span class="yr">2016</span><br>KBS2 · 2016.2~4 · 유시진</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">라온</span><span class="chip f">여아</span><span class="mult" data-mult="라온:female|2016"></span></div>
+  <figure><svg data-k="라온:female" data-mark="2016" viewBox="0 0 300 100" role="img" aria-label="라온 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">구르미 그린 달빛</span> <span class="yr">2016</span><br>KBS2 · 2016.8~10 · 홍라온</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">보검</span><span class="chip m">남아</span><span class="mult" data-mult="보검:male|2016"></span></div>
+  <figure><svg data-k="보검:male" data-mark="2016" viewBox="0 0 300 100" role="img" aria-label="보검 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">배우 박보검</span> <span class="yr">2016</span><br>구르미 그린 달빛(2016)·남자친구(2018)</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">지안</span><span class="chip f">여아</span><span class="mult" data-mult="지안:female|2018"></span></div>
+  <figure><svg data-k="지안:female" data-mark="2018" viewBox="0 0 300 100" role="img" aria-label="지안 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">나의 아저씨</span> <span class="yr">2018</span><br>tvN · 2018.3~5 · 이지안</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">해인</span><span class="chip m">남아</span><span class="mult" data-mult="해인:male|2018"></span></div>
+  <figure><svg data-k="해인:male" data-mark="2018" viewBox="0 0 300 100" role="img" aria-label="해인 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">배우 정해인</span> <span class="yr">2018</span><br>밥 잘 사주는 예쁜 누나 · 2018.3~5</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">이서</span><span class="chip f">여아</span><span class="mult" data-mult="이서:female|2020"></span></div>
+  <figure><svg data-k="이서:female" data-mark="2020" viewBox="0 0 300 100" role="img" aria-label="이서 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">이태원 클라쓰</span> <span class="yr">2020</span><br>JTBC · 2020.1~3 · 조이서</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">다미</span><span class="chip f">여아</span><span class="mult" data-mult="다미:female|2022"></span></div>
+  <figure><svg data-k="다미:female" data-mark="2022" viewBox="0 0 300 100" role="img" aria-label="다미 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">배우 김다미</span> <span class="yr">2022</span><br>이태원 클라쓰(2020) 조이서 역</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">이진</span><span class="chip m">남아</span><span class="mult" data-mult="이진:male|2022"></span></div>
+  <figure><svg data-k="이진:male" data-mark="2022" viewBox="0 0 300 100" role="img" aria-label="이진 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">스물다섯 스물하나</span> <span class="yr">2022</span><br>tvN · 2022.2~4 · 백이진</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">하리</span><span class="chip f">여아</span><span class="mult" data-mult="하리:female|2022"></span></div>
+  <figure><svg data-k="하리:female" data-mark="2022" viewBox="0 0 300 100" role="img" aria-label="하리 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">사내 맞선</span> <span class="yr">2022</span><br>SBS · 2022.2~4 · 신하리</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">태리</span><span class="chip f">여아</span><span class="mult" data-mult="태리:female|2022"></span></div>
+  <figure><svg data-k="태리:female" data-mark="2022" viewBox="0 0 300 100" role="img" aria-label="태리 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">배우 김태리</span> <span class="yr">2022</span><br>아가씨(2016)~스물다섯 스물하나(2022)</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">새벽</span><span class="chip f">여아</span><span class="mult" data-mult="새벽:female|2022"></span></div>
+  <figure><svg data-k="새벽:female" data-mark="2022" viewBox="0 0 300 100" role="img" aria-label="새벽 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">오징어 게임</span> <span class="yr">2022</span><br>넷플릭스 · 2021.9 · 강새벽</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">도준</span><span class="chip m">남아</span><span class="mult" data-mult="도준:male|2023"></span></div>
+  <figure><svg data-k="도준:male" data-mark="2023" viewBox="0 0 300 100" role="img" aria-label="도준 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">재벌집 막내아들</span> <span class="yr">2023</span><br>JTBC · 2022.11~12 · 진도준</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">해이</span><span class="chip f">여아</span><span class="mult" data-mult="해이:female|2023"></span></div>
+  <figure><svg data-k="해이:female" data-mark="2023" viewBox="0 0 300 100" role="img" aria-label="해이 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">일타 스캔들</span> <span class="yr">2023</span><br>tvN · 2023.1~3 · 남해이</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">해인</span><span class="chip f">여아</span><span class="mult" data-mult="해인:female|2024"></span></div>
+  <figure><svg data-k="해인:female" data-mark="2024" viewBox="0 0 300 100" role="img" aria-label="해인 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">눈물의 여왕</span> <span class="yr">2024</span><br>tvN · 2024.3~4 · 홍해인</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">선재</span><span class="chip m">남아</span><span class="mult" data-mult="선재:male|2024"></span></div>
+  <figure><svg data-k="선재:male" data-mark="2024" viewBox="0 0 300 100" role="img" aria-label="선재 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">선재 업고 튀어</span> <span class="yr">2024</span><br>tvN · 2024.4~5 · 류선재</div>
+</div>
+</div>
+<h2><span class="n">02</span>실존 인물의 이름은 잘 안 쓴다</h2>
+<p class="sub">아이돌 75명의 이름을 데뷔 연도 기준으로 같이 훑었습니다. 대부분 움직이지 않았습니다. 절반 이상이 1.2배 안팎으로, 사실상 변화가 없습니다. 배수가 커 보이는 항목은 대개 규모가 없습니다. 세븐틴 승관은 0명에서 4명, 트와이스 사나는 2명에서 11명입니다. 등장인물의 이름은 빌려 쓸 수 있지만, <b>실존 인물의 이름은 그 사람이 곧바로 떠올라</b> 아이에게 붙이기 어려운 듯합니다.</p>
+<p class="sub" style="margin-bottom:22px">규모까지 움직인 예외는 넷입니다. 아이돌 셋과, 운동선수 중 유일한 사례인 김연아입니다. 뉴진스 해린은 15년간 100~160명대에 묶여 있다가 데뷔 이후 4배가 됐고, 아직 오르는 중입니다.</p>
+<div class="grid">
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">연아</span><span class="chip f">여아</span><span class="mult" data-mult="연아:female|2009"></span></div>
+  <figure><svg data-k="연아:female" data-mark="2009" viewBox="0 0 300 100" role="img" aria-label="연아 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">김연아</span> <span class="yr">2009</span><br>2009.3 세계선수권 최초 우승</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">설현</span><span class="chip f">여아</span><span class="mult" data-mult="설현:female|2015"></span></div>
+  <figure><svg data-k="설현:female" data-mark="2015" viewBox="0 0 300 100" role="img" aria-label="설현 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">AOA 설현</span> <span class="yr">2015</span><br>2015~16 광고 최다 모델</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">제니</span><span class="chip f">여아</span><span class="mult" data-mult="제니:female|2018"></span></div>
+  <figure><svg data-k="제니:female" data-mark="2018" viewBox="0 0 300 100" role="img" aria-label="제니 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">블랙핑크 제니</span> <span class="yr">2018</span><br>2016 데뷔, 2018년부터 상승</div>
+</div>
+<div class="card" data-g="female">
+  <div class="top"><span class="nm">해린</span><span class="chip f">여아</span><span class="mult" data-mult="해린:female|2023"></span></div>
+  <figure><svg data-k="해린:female" data-mark="2023" viewBox="0 0 300 100" role="img" aria-label="해린 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">뉴진스 해린</span> <span class="yr">2023</span><br>2022.7 데뷔, 15년 정체 뒤 4배</div>
+</div>
+</div>
+<p class="sub" style="margin-top:30px">운동선수는 위상과 무관하게 거의 통하지 않았습니다. 김연아만 예외입니다.</p>
+<div class="tbox"><table style="min-width:440px"><thead><tr><th>이름</th><th>인물</th><th>결과</th></tr></thead><tbody>
+<tr><td><b>흥민</b> <span class="chip m">남</span></td><td style="color:var(--ink2)">손흥민</td><td style="color:var(--ink2)">19년 통틀어 최대 10명</td></tr>
+<tr><td><b>상혁</b> <span class="chip m">남</span></td><td style="color:var(--ink2)">페이커 이상혁</td><td style="color:var(--ink2)">2008년 213명에서 계속 감소</td></tr>
+<tr><td><b>정후</b> <span class="chip m">남</span></td><td style="color:var(--ink2)">이정후</td><td style="color:var(--ink2)">MLB 진출 전후 변화 없음</td></tr>
+<tr><td><b>지성</b> <span class="chip m">남</span></td><td style="color:var(--ink2)">박지성</td><td style="color:var(--ink2)">2002·2010 월드컵 전후 변화 없음</td></tr>
+<tr><td><b>현진</b> <span class="chip m">남</span></td><td style="color:var(--ink2)">류현진</td><td style="color:var(--ink2)">2013 MLB 데뷔 해 ×1.08</td></tr>
+<tr><td><b>우진</b> <span class="chip m">남</span></td><td style="color:var(--ink2)">김우진(양궁 3관왕)</td><td style="color:var(--ink2)">2024년 ×1.1</td></tr>
+</tbody></table></div>
+<h2><span class="n">03</span>호랑이해와 용의 해</h2>
+<p class="sub">가장 크게 늘어난 이름은 작품과 무관했습니다. 흰 호랑이의 해인 2010년 경인년에 ‘백호’가 22배가 됐고, 용의 해인 2012년과 2024년에 용의 우리말인 ‘미르’가 두 번 늘었습니다. 급증을 모두 작품 때문이라고 읽으면 이런 경우를 놓칩니다.</p>
+<div class="grid">
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">백호</span><span class="chip m">남아</span><span class="mult" data-mult="백호:male|2010"></span></div>
+  <figure><svg data-k="백호:male" data-mark="2010" viewBox="0 0 300 100" role="img" aria-label="백호 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">경인년 白虎</span> <span class="yr">2010</span><br>2010년은 흰 호랑이의 해</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">범</span><span class="chip m">남아</span><span class="mult" data-mult="범:male|2010"></span></div>
+  <figure><svg data-k="범:male" data-mark="2010" viewBox="0 0 300 100" role="img" aria-label="범 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">호랑이해</span> <span class="yr">2010</span><br>2010 경인년, 2022 임인년 두 번 반등</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">태호</span><span class="chip m">남아</span><span class="mult" data-mult="태호:male|2010"></span></div>
+  <figure><svg data-k="태호:male" data-mark="2010" viewBox="0 0 300 100" role="img" aria-label="태호 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">호랑이해</span> <span class="yr">2010</span><br>‘호’ 돌림이 2010년에 함께 늘었다</div>
+</div>
+<div class="card" data-g="male">
+  <div class="top"><span class="nm">미르</span><span class="chip m">남아</span><span class="mult" data-mult="미르:male|2012"></span></div>
+  <figure><svg data-k="미르:male" data-mark="2012" viewBox="0 0 300 100" role="img" aria-label="미르 연도별 추이"></svg></figure>
+  <div class="cap"><span class="work">용의 해</span> <span class="yr">2012</span><br>2012 흑룡, 2024 청룡 두 번 급등</div>
+</div>
+</div>
+<h2><span class="n">04</span>원인을 못 찾은 이름</h2>
+<p class="sub">같은 기준에 걸렸지만 맞아떨어지는 작품을 찾지 못한 이름입니다. ‘겸’ 돌림(대겸, 나겸, 다겸, 보겸)은 2010년대 내내 유행했는데, 특정 연도에만 몰린 이유는 확인하지 못했습니다.</p>
+<div class="tbox"><table><thead><tr><th>이름</th><th>늘어난 해</th><th>전년 → 그해</th><th>배수</th><th>19년 추이</th></tr></thead><tbody>
+<tr><td><b>하율</b> <span class="chip m">남</span></td><td class="num">2009</td><td class="num" data-delta="하율:male|2009"></td><td class="num" data-multp="하율:male|2009"></td><td style="width:160px"><svg data-k="하율:male" data-mark="2009" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+<tr><td><b>대겸</b> <span class="chip m">남</span></td><td class="num">2011</td><td class="num" data-delta="대겸:male|2011"></td><td class="num" data-multp="대겸:male|2011"></td><td style="width:160px"><svg data-k="대겸:male" data-mark="2011" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+<tr><td><b>나겸</b> <span class="chip f">여</span></td><td class="num">2011</td><td class="num" data-delta="나겸:female|2011"></td><td class="num" data-multp="나겸:female|2011"></td><td style="width:160px"><svg data-k="나겸:female" data-mark="2011" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+<tr><td><b>다겸</b> <span class="chip f">여</span></td><td class="num">2014</td><td class="num" data-delta="다겸:female|2014"></td><td class="num" data-multp="다겸:female|2014"></td><td style="width:160px"><svg data-k="다겸:female" data-mark="2014" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+<tr><td><b>지온</b> <span class="chip f">여</span></td><td class="num">2015</td><td class="num" data-delta="지온:female|2015"></td><td class="num" data-multp="지온:female|2015"></td><td style="width:160px"><svg data-k="지온:female" data-mark="2015" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+<tr><td><b>시안</b> <span class="chip m">남</span></td><td class="num">2016</td><td class="num" data-delta="시안:male|2016"></td><td class="num" data-multp="시안:male|2016"></td><td style="width:160px"><svg data-k="시안:male" data-mark="2016" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+<tr><td><b>보겸</b> <span class="chip m">남</span></td><td class="num">2016</td><td class="num" data-delta="보겸:male|2016"></td><td class="num" data-multp="보겸:male|2016"></td><td style="width:160px"><svg data-k="보겸:male" data-mark="2016" data-mini="1" viewBox="0 0 150 34"></svg></td></tr>
+</tbody></table></div>
+<h2><span class="n">05</span>흥행해도 안 쓰는 이름</h2>
+<p class="sub">시청률이나 화제성만으로는 이름이 늘지 않습니다. 이름 자체가 요즘 작명 취향에 맞아야 합니다. 같은 <b>이태원 클라쓰</b>에서도 ‘조이서’는 크게 늘었지만 ‘박새로이’는 최대 14명에 그쳤습니다.</p>
+<div class="tbox"><table style="min-width:440px"><thead><tr><th>이름</th><th>작품</th><th>결과</th></tr></thead><tbody>
+<tr><td><b>영우</b> <span class="chip m">남</span></td><td><b>이상한 변호사 우영우</b><br><span style="color:var(--ink3);font-size:12.5px">ENA · 2022 · 최고 17.5%</span></td><td style="color:var(--ink2)">2022년 59→72명, 이후 다시 감소</td></tr>
+<tr><td><b>기훈</b> <span class="chip m">남</span></td><td><b>오징어 게임</b><br><span style="color:var(--ink3);font-size:12.5px">넷플릭스 · 2021 · 전 세계 1위</span></td><td style="color:var(--ink2)">2008년 128명에서 계속 감소, 반등 없음</td></tr>
+<tr><td><b>그래</b> <span class="chip m">남</span></td><td><b>미생</b><br><span style="color:var(--ink3);font-size:12.5px">tvN · 2014 · 장그래</span></td><td style="color:var(--ink2)">19년 통틀어 최대 3명</td></tr>
+<tr><td><b>새로이</b> <span class="chip m">남</span></td><td><b>이태원 클라쓰</b><br><span style="color:var(--ink3);font-size:12.5px">JTBC · 2020 · 박새로이</span></td><td style="color:var(--ink2)">최대 14명. 같은 작품 ‘이서’와 대조된다</td></tr>
+<tr><td><b>은탁</b> <span class="chip f">여</span></td><td><b>도깨비</b><br><span style="color:var(--ink3);font-size:12.5px">tvN · 2016~17 · 지은탁</span></td><td style="color:var(--ink2)">19년 통틀어 최대 2명</td></tr>
+<tr><td><b>동은</b> <span class="chip f">여</span></td><td><b>더 글로리</b><br><span style="color:var(--ink3);font-size:12.5px">넷플릭스 · 2022~23 · 문동은</span></td><td style="color:var(--ink2)">오히려 감소 추세</td></tr>
+</tbody></table></div>
+<div class="note"><b>읽을 때 주의할 점.</b> 이 페이지가 보여주는 것은 시점의 일치입니다. 작품이 이름을 유행시켰는지, 아니면 작가가 이미 유행하던 이름을 등장인물에 붙였는지는 이 데이터만으로 가릴 수 없습니다. ‘이서’, ‘하리’, ‘지안’처럼 이미 완만히 오르던 이름이 방영 연도에 기울기를 바꾼 경우가 특히 그렇습니다. 반대로 ‘훤’, ‘우재’, ‘예승’, ‘해이’처럼 직전까지 연 10명 안팎이던 이름이 한 해에 100명대가 된 경우는 작품 쪽 설명이 훨씬 자연스럽습니다.</div>
+<p class="meta">전체 36만 453행 · 연도·성별 합계가 같은 출처의 출생아 수와 19개 연도 모두 일치함을 확인</p>
+</div><div id="tip"></div><script>
+const D = {"years": [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026], "count": {"훤:male": [2, 2, 3, 1, 94, 70, 52, 60, 43, 37, 29, 38, 33, 31, 32, 21, 23, 35, 22], "연우:female": [918, 841, 1018, 975, 2011, 1460, 1144, 981, 853, 690, 658, 713, 551, 460, 544, 549, 485, 546, 422], "시진:male": [12, 11, 14, 26, 20, 19, 18, 19, 138, 111, 78, 69, 51, 44, 36, 26, 29, 15, 12], "예승:female": [46, 43, 46, 39, 28, 151, 107, 62, 54, 36, 21, 25, 18, 9, 7, 11, 4, 3, 3], "라온:female": [20, 28, 65, 121, 146, 170, 176, 228, 420, 648, 525, 471, 363, 349, 277, 191, 137, 125, 72], "지안:female": [498, 460, 549, 475, 705, 806, 1137, 1613, 1605, 1554, 2704, 2248, 1862, 1689, 1652, 1208, 1347, 1563, 1268], "해인:male": [19, 15, 33, 14, 25, 17, 18, 11, 18, 15, 135, 187, 183, 122, 130, 159, 158, 238, 143], "보검:male": [1, 1, 1, 0, 0, 0, 0, 0, 44, 55, 114, 43, 16, 13, 6, 6, 15, 9, 12], "이서:female": [13, 7, 6, 15, 25, 35, 31, 55, 60, 79, 120, 201, 880, 2048, 2338, 1855, 1897, 1762, 1367], "다미:female": [92, 73, 72, 73, 103, 93, 79, 69, 57, 43, 40, 76, 118, 134, 253, 223, 287, 258, 196], "이진:male": [9, 7, 0, 7, 7, 2, 4, 12, 10, 9, 13, 15, 13, 24, 201, 203, 237, 432, 406], "하리:female": [21, 23, 27, 38, 56, 53, 55, 135, 263, 186, 242, 353, 329, 314, 462, 460, 515, 488, 348], "도준:male": [32, 27, 28, 82, 124, 141, 276, 341, 372, 318, 303, 384, 365, 355, 348, 909, 784, 878, 671], "해이:female": [2, 0, 0, 0, 3, 4, 1, 3, 3, 6, 8, 14, 3, 7, 14, 129, 81, 116, 75], "해인:female": [260, 212, 275, 351, 296, 287, 229, 219, 215, 184, 273, 266, 194, 167, 137, 197, 403, 421, 347], "선재:male": [192, 150, 139, 119, 121, 100, 109, 100, 94, 110, 82, 67, 60, 46, 48, 64, 124, 174, 140], "태리:female": [20, 38, 33, 30, 30, 22, 27, 37, 73, 153, 343, 530, 644, 762, 918, 810, 742, 664, 471], "새벽:female": [5, 12, 4, 16, 18, 8, 8, 2, 4, 5, 10, 7, 7, 8, 27, 9, 18, 23, 19], "백호:male": [20, 7, 155, 23, 6, 9, 6, 4, 5, 7, 13, 4, 9, 3, 4, 6, 15, 15, 16], "범:male": [20, 47, 153, 56, 39, 43, 60, 55, 43, 48, 31, 37, 32, 25, 73, 25, 31, 45, 40], "미르:male": [56, 63, 51, 72, 215, 89, 58, 55, 58, 39, 41, 46, 28, 29, 30, 32, 124, 33, 17], "태호:male": [277, 318, 562, 425, 318, 223, 216, 246, 224, 190, 160, 154, 130, 137, 156, 114, 129, 133, 89], "강호:male": [49, 49, 136, 69, 48, 41, 37, 26, 28, 31, 25, 24, 11, 17, 25, 15, 25, 26, 16], "대겸:male": [10, 2, 8, 116, 30, 29, 8, 24, 13, 6, 10, 8, 1, 31, 12, 8, 4, 16, 3], "나겸:female": [15, 30, 8, 111, 28, 71, 15, 37, 10, 8, 25, 20, 41, 125, 24, 25, 13, 41, 14], "다겸:female": [22, 84, 66, 41, 65, 29, 175, 69, 48, 36, 54, 105, 98, 180, 77, 40, 74, 36, 16], "우재:male": [49, 52, 42, 41, 70, 352, 114, 99, 113, 112, 102, 127, 147, 116, 152, 219, 200, 319, 233], "시안:male": [22, 21, 31, 52, 52, 59, 52, 110, 458, 497, 613, 717, 584, 449, 523, 448, 397, 605, 398], "지온:female": [31, 57, 98, 80, 84, 122, 144, 561, 570, 443, 436, 431, 384, 388, 326, 290, 261, 308, 224], "하율:male": [85, 459, 644, 726, 864, 737, 676, 592, 560, 600, 512, 445, 463, 404, 332, 342, 262, 348, 221], "보겸:male": [25, 33, 42, 33, 27, 34, 25, 30, 166, 216, 195, 108, 103, 63, 35, 28, 30, 37, 11], "주원:male": [718, 682, 821, 2825, 2802, 2547, 2769, 2762, 2573, 2167, 1778, 1585, 1300, 1219, 1124, 1017, 1048, 1126, 883], "연아:female": [310, 676, 631, 524, 553, 558, 569, 528, 424, 462, 415, 295, 313, 282, 234, 263, 241, 236, 201], "설현:female": [3, 5, 9, 7, 10, 10, 8, 72, 108, 58, 36, 37, 26, 20, 12, 16, 26, 13, 5], "수지:female": [256, 254, 208, 324, 472, 533, 443, 369, 250, 183, 244, 148, 160, 124, 114, 107, 85, 83, 43], "해린:female": [136, 138, 163, 158, 143, 140, 142, 145, 108, 94, 101, 85, 65, 82, 110, 247, 427, 533, 450], "제니:female": [23, 28, 30, 27, 40, 30, 30, 44, 23, 34, 88, 97, 121, 209, 222, 152, 130, 96, 68], "흥민:male": [0, 0, 1, 0, 1, 1, 1, 0, 0, 2, 0, 9, 7, 6, 8, 6, 10, 8, 1], "상혁:male": [213, 171, 171, 125, 132, 98, 66, 73, 60, 66, 40, 33, 15, 19, 12, 14, 14, 10, 6], "지용:male": [168, 176, 226, 243, 383, 270, 246, 278, 254, 211, 175, 126, 109, 73, 78, 61, 140, 109, 40], "성재:male": [279, 226, 183, 145, 155, 223, 152, 136, 117, 96, 77, 61, 40, 31, 25, 24, 22, 18, 15], "호정:female": [84, 60, 58, 45, 46, 61, 31, 28, 27, 15, 12, 10, 9, 7, 9, 5, 3, 6, 0], "영우:male": [293, 213, 257, 226, 247, 206, 195, 174, 173, 113, 96, 82, 66, 53, 72, 59, 45, 64, 40], "기훈:male": [128, 106, 107, 78, 93, 64, 61, 48, 41, 33, 32, 37, 22, 11, 8, 6, 7, 5, 4], "그래:male": [0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0], "새로이:male": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 14, 11, 5, 13, 10, 4, 5], "은탁:female": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0], "동은:female": [25, 22, 13, 23, 15, 14, 20, 13, 5, 6, 9, 3, 6, 4, 6, 6, 4, 4, 1], "택:male": [3, 0, 0, 3, 0, 2, 2, 3, 10, 4, 4, 6, 4, 3, 0, 3, 2, 4, 4]}, "share": {"훤:male": [0.08, 0.09, 0.12, 0.04, 3.71, 3.0, 2.27, 2.59, 1.99, 1.93, 1.63, 2.31, 2.28, 2.25, 2.44, 1.7, 1.87, 2.66, 2.23], "연우:female": [40.2, 37.96, 43.77, 41.37, 83.71, 65.77, 52.47, 44.54, 41.47, 38.33, 39.2, 45.93, 40.24, 35.11, 43.3, 46.74, 41.37, 43.79, 44.74], "시진:male": [0.5, 0.47, 0.57, 1.04, 0.79, 0.81, 0.78, 0.82, 6.39, 5.79, 4.38, 4.19, 3.53, 3.19, 2.74, 2.1, 2.36, 1.14, 1.22], "예승:female": [2.01, 1.94, 1.98, 1.65, 1.17, 6.8, 4.91, 2.81, 2.63, 2.0, 1.25, 1.61, 1.31, 0.69, 0.56, 0.94, 0.34, 0.24, 0.32], "라온:female": [0.88, 1.26, 2.79, 5.13, 6.08, 7.66, 8.07, 10.35, 20.42, 36.0, 31.27, 30.34, 26.51, 26.64, 22.05, 16.26, 11.69, 10.03, 7.63], "지안:female": [21.81, 20.76, 23.6, 20.16, 29.34, 36.31, 52.15, 73.23, 78.04, 86.33, 161.08, 144.81, 135.97, 128.93, 131.49, 102.85, 114.91, 125.36, 134.42], "해인:male": [0.78, 0.64, 1.33, 0.56, 0.99, 0.73, 0.78, 0.47, 0.83, 0.78, 7.59, 11.35, 12.66, 8.86, 9.9, 12.85, 12.87, 18.06, 14.48], "보검:male": [0.04, 0.04, 0.04, 0.0, 0.0, 0.0, 0.0, 0.0, 2.04, 2.87, 6.41, 2.61, 1.11, 0.94, 0.46, 0.48, 1.22, 0.68, 1.22], "이서:female": [0.57, 0.32, 0.26, 0.64, 1.04, 1.58, 1.42, 2.5, 2.92, 4.39, 7.15, 12.95, 64.26, 156.33, 186.09, 157.94, 161.83, 141.32, 144.92], "다미:female": [4.03, 3.29, 3.1, 3.1, 4.29, 4.19, 3.62, 3.13, 2.77, 2.39, 2.38, 4.9, 8.62, 10.23, 20.14, 18.99, 24.48, 20.69, 20.78], "이진:male": [0.37, 0.3, 0.0, 0.28, 0.28, 0.09, 0.17, 0.52, 0.46, 0.47, 0.73, 0.91, 0.9, 1.74, 15.31, 16.41, 19.3, 32.78, 41.11], "하리:female": [0.92, 1.04, 1.16, 1.61, 2.33, 2.39, 2.52, 6.13, 12.79, 10.33, 14.42, 22.74, 24.02, 23.97, 36.77, 39.17, 43.93, 39.14, 36.89], "도준:male": [1.32, 1.15, 1.13, 3.29, 4.89, 6.04, 12.03, 14.7, 17.23, 16.59, 17.03, 23.31, 25.25, 25.77, 26.5, 73.48, 63.85, 66.62, 67.95], "해이:female": [0.09, 0.0, 0.0, 0.0, 0.12, 0.18, 0.05, 0.14, 0.15, 0.33, 0.48, 0.9, 0.22, 0.53, 1.11, 10.98, 6.91, 9.3, 7.95], "해인:female": [11.39, 9.57, 11.82, 14.89, 12.32, 12.93, 10.5, 9.94, 10.45, 10.22, 16.26, 17.14, 14.17, 12.75, 10.9, 16.77, 34.38, 33.77, 36.79], "선재:male": [7.93, 6.4, 5.61, 4.78, 4.78, 4.28, 4.75, 4.31, 4.35, 5.74, 4.61, 4.07, 4.15, 3.34, 3.66, 5.17, 10.1, 13.2, 14.18], "태리:female": [0.88, 1.72, 1.42, 1.27, 1.25, 0.99, 1.24, 1.68, 3.55, 8.5, 20.43, 34.14, 47.03, 58.17, 73.07, 68.96, 63.3, 53.26, 49.93], "새벽:female": [0.22, 0.54, 0.17, 0.68, 0.75, 0.36, 0.37, 0.09, 0.19, 0.28, 0.6, 0.45, 0.51, 0.61, 2.15, 0.77, 1.54, 1.84, 2.01], "백호:male": [0.83, 0.3, 6.26, 0.92, 0.24, 0.39, 0.26, 0.17, 0.23, 0.37, 0.73, 0.24, 0.62, 0.22, 0.3, 0.48, 1.22, 1.14, 1.62], "범:male": [0.83, 2.0, 6.18, 2.25, 1.54, 1.84, 2.62, 2.37, 1.99, 2.5, 1.74, 2.25, 2.21, 1.82, 5.56, 2.02, 2.52, 3.41, 4.05], "미르:male": [2.31, 2.69, 2.06, 2.89, 8.49, 3.81, 2.53, 2.37, 2.69, 2.03, 2.3, 2.79, 1.94, 2.11, 2.28, 2.59, 10.1, 2.5, 1.72], "태호:male": [11.44, 13.56, 22.7, 17.08, 12.55, 9.55, 9.42, 10.6, 10.37, 9.91, 8.99, 9.35, 8.99, 9.95, 11.88, 9.21, 10.51, 10.09, 9.01], "강호:male": [2.02, 2.09, 5.49, 2.77, 1.89, 1.76, 1.61, 1.12, 1.3, 1.62, 1.4, 1.46, 0.76, 1.23, 1.9, 1.21, 2.04, 1.97, 1.62], "대겸:male": [0.41, 0.09, 0.32, 4.66, 1.18, 1.24, 0.35, 1.03, 0.6, 0.31, 0.56, 0.49, 0.07, 2.25, 0.91, 0.65, 0.33, 1.21, 0.3], "나겸:female": [0.66, 1.35, 0.34, 4.71, 1.17, 3.2, 0.69, 1.68, 0.49, 0.44, 1.49, 1.29, 2.99, 9.54, 1.91, 2.13, 1.11, 3.29, 1.48], "다겸:female": [0.96, 3.79, 2.84, 1.74, 2.71, 1.31, 8.03, 3.13, 2.33, 2.0, 3.22, 6.76, 7.16, 13.74, 6.13, 3.41, 6.31, 2.89, 1.7], "우재:male": [2.02, 2.22, 1.7, 1.65, 2.76, 15.07, 4.97, 4.27, 5.23, 5.84, 5.73, 7.71, 10.17, 8.42, 11.58, 17.7, 16.29, 24.21, 23.59], "시안:male": [0.91, 0.9, 1.25, 2.09, 2.05, 2.53, 2.27, 4.74, 21.21, 25.93, 34.45, 43.52, 40.39, 32.6, 39.83, 36.21, 32.33, 45.91, 40.3], "지온:female": [1.36, 2.57, 4.21, 3.39, 3.5, 5.5, 6.6, 25.47, 27.71, 24.61, 25.97, 27.76, 28.04, 29.62, 25.95, 24.69, 22.27, 24.7, 23.75], "하율:male": [3.51, 19.57, 26.01, 29.17, 34.1, 31.55, 29.47, 25.51, 25.93, 31.3, 28.77, 27.01, 32.03, 29.33, 25.28, 27.64, 21.34, 26.41, 22.38], "보겸:male": [1.03, 1.41, 1.7, 1.33, 1.07, 1.46, 1.09, 1.29, 7.69, 11.27, 10.96, 6.55, 7.12, 4.57, 2.67, 2.26, 2.44, 2.81, 1.11], "주원:male": [29.66, 29.08, 33.16, 113.5, 110.59, 109.05, 120.71, 119.04, 119.16, 113.06, 99.92, 96.2, 89.92, 88.5, 85.6, 82.21, 85.35, 85.44, 89.42], "연아:female": [13.58, 30.51, 27.13, 22.24, 23.02, 25.14, 26.1, 23.97, 20.62, 25.67, 24.72, 19.0, 22.86, 21.53, 18.63, 22.39, 20.56, 18.93, 21.31], "설현:female": [0.13, 0.23, 0.39, 0.3, 0.42, 0.45, 0.37, 3.27, 5.25, 3.22, 2.14, 2.38, 1.9, 1.53, 0.96, 1.36, 2.22, 1.04, 0.53], "수지:female": [11.21, 11.46, 8.94, 13.75, 19.65, 24.01, 20.32, 16.75, 12.16, 10.17, 14.54, 9.53, 11.68, 9.47, 9.07, 9.11, 7.25, 6.66, 4.56], "해린:female": [5.96, 6.23, 7.01, 6.7, 5.95, 6.31, 6.51, 6.58, 5.25, 5.22, 6.02, 5.48, 4.75, 6.26, 8.76, 21.03, 36.43, 42.75, 47.71], "제니:female": [1.01, 1.26, 1.29, 1.15, 1.66, 1.35, 1.38, 2.0, 1.12, 1.89, 5.24, 6.25, 8.84, 15.95, 17.67, 12.94, 11.09, 7.7, 7.21], "흥민:male": [0.0, 0.0, 0.04, 0.0, 0.04, 0.04, 0.04, 0.0, 0.0, 0.1, 0.0, 0.55, 0.48, 0.44, 0.61, 0.48, 0.81, 0.61, 0.1], "상혁:male": [8.8, 7.29, 6.91, 5.02, 5.21, 4.2, 2.88, 3.15, 2.78, 3.44, 2.25, 2.0, 1.04, 1.38, 0.91, 1.13, 1.14, 0.76, 0.61], "지용:male": [6.94, 7.5, 9.13, 9.76, 15.12, 11.56, 10.72, 11.98, 11.76, 11.01, 9.83, 7.65, 7.54, 5.3, 5.94, 4.93, 11.4, 8.27, 4.05], "성재:male": [11.52, 9.64, 7.39, 5.83, 6.12, 9.55, 6.63, 5.86, 5.42, 5.01, 4.33, 3.7, 2.77, 2.25, 1.9, 1.94, 1.79, 1.37, 1.52], "호정:female": [3.68, 2.71, 2.49, 1.91, 1.91, 2.75, 1.42, 1.27, 1.31, 0.83, 0.71, 0.64, 0.66, 0.53, 0.72, 0.43, 0.26, 0.48, 0.0], "영우:male": [12.1, 9.08, 10.38, 9.08, 9.75, 8.82, 8.5, 7.5, 8.01, 5.9, 5.4, 4.98, 4.57, 3.85, 5.48, 4.77, 3.67, 4.86, 4.05], "기훈:male": [5.29, 4.52, 4.32, 3.13, 3.67, 2.74, 2.66, 2.07, 1.9, 1.72, 1.8, 2.25, 1.52, 0.8, 0.61, 0.48, 0.57, 0.38, 0.41], "그래:male": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.04, 0.0, 0.16, 0.0, 0.06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "새로이:male": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.06, 0.18, 0.97, 0.8, 0.38, 1.05, 0.81, 0.3, 0.51], "은탁:female": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.06, 0.12, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "동은:female": [1.09, 0.99, 0.56, 0.98, 0.62, 0.63, 0.92, 0.59, 0.24, 0.33, 0.54, 0.19, 0.44, 0.31, 0.48, 0.51, 0.34, 0.32, 0.11], "택:male": [0.12, 0.0, 0.0, 0.12, 0.0, 0.09, 0.09, 0.13, 0.46, 0.21, 0.22, 0.36, 0.28, 0.22, 0.0, 0.24, 0.16, 0.3, 0.41]}, "births": {"2008": {"male": 242115, "female": 228350}, "2009": {"male": 234531, "female": 221564}, "2010": {"male": 247560, "female": 232602}, "2011": {"male": 248898, "female": 235652}, "2012": {"male": 253375, "female": 240246}, "2013": {"male": 233562, "female": 221982}, "2014": {"male": 229386, "female": 218043}, "2015": {"male": 232021, "female": 220250}, "2016": {"male": 215932, "female": 205668}, "2017": {"male": 191665, "female": 180002}, "2018": {"male": 177939, "female": 167870}, "2019": {"male": 164764, "female": 155234}, "2020": {"male": 144573, "female": 136941}, "2021": {"male": 137734, "female": 131002}, "2022": {"male": 131315, "female": 125635}, "2023": {"male": 123712, "female": 117451}, "2024": {"male": 122783, "female": 117224}, "2025": {"male": 131784, "female": 124683}, "2026": {"male": 98750, "female": 94328}}};
+const YRS = D.years, N = YRS.length;
+const tip = document.getElementById('tip');
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+function draw(svg){
+  const key=svg.dataset.k, mark=+svg.dataset.mark, mini=svg.dataset.mini==='1';
+  const s=D.share[key], c=D.count[key];
+  if(!s||!c) return;
+  const male=key.split(':')[1]==='male';
+  const LINE=male?'var(--male)':'var(--female)', FILL=male?'var(--male-soft)':'var(--female-soft)';
+  const W=mini?150:300, H=mini?34:100;
+  const PL=mini?2:4, PR=mini?2:4, PT=mini?4:16, PB=mini?4:18;
+  const max=Math.max.apply(null,s)*1.14 || 1;
+  const X=i=>PL+i*(W-PL-PR)/(N-1);
+  const Y=v=>H-PB-(v/max)*(H-PT-PB);
+  const mi=YRS.indexOf(mark);
+
+  if(!mini && mi>=0)
+    svg.appendChild(el('line',{x1:X(mi),x2:X(mi),y1:PT-8,y2:H-PB,stroke:'var(--mark)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.9}));
+  svg.appendChild(el('line',{x1:PL,x2:W-PR,y1:H-PB,y2:H-PB,stroke:'var(--hair)','stroke-width':1}));
+
+  const pts=s.map((v,i)=>X(i)+','+Y(v)).join(' ');
+  svg.appendChild(el('polygon',{points:PL+','+(H-PB)+' '+pts+' '+(W-PR)+','+(H-PB),fill:FILL,stroke:'none'}));
+  svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:LINE,'stroke-width':mini?1.4:2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+
+  if(mi>=0){
+    svg.appendChild(el('circle',{cx:X(mi),cy:Y(s[mi]),r:mini?2.4:4,fill:LINE,stroke:'var(--surface)','stroke-width':2}));
+    if(!mini){
+      const t=el('text',{x:X(mi),y:Y(s[mi])-10,'text-anchor':mi>N-4?'end':(mi<3?'start':'middle'),
+        fill:'var(--ink)','font-size':11,'font-weight':700,
+        stroke:'var(--surface)','stroke-width':3.5,'stroke-linejoin':'round','paint-order':'stroke'});
+      t.textContent=c[mi].toLocaleString()+'명'; svg.appendChild(t);
+    }
+  }
+  if(!mini){
+    [0,N-1].forEach((i,k)=>{
+      const t=el('text',{x:X(i),y:H-5,'text-anchor':k?'end':'start',fill:'var(--ink3)','font-size':10});
+      t.textContent=YRS[i]; svg.appendChild(t);
+    });
+    svg.appendChild(el('rect',{x:0,y:0,width:W,height:H,fill:'transparent'}));
+    svg.addEventListener('pointermove',ev=>{
+      const r=svg.getBoundingClientRect();
+      const i=Math.max(0,Math.min(N-1,Math.round(((ev.clientX-r.left)/r.width*W-PL)/((W-PL-PR)/(N-1)))));
+      tip.textContent=YRS[i]+'년 · '+c[i].toLocaleString()+'명 · 1만명당 '+s[i];
+      tip.style.left=Math.min(innerWidth-tip.offsetWidth-8,ev.clientX+12)+'px';
+      tip.style.top=(ev.clientY-38)+'px'; tip.style.opacity=1;
+    });
+    svg.addEventListener('pointerleave',()=>{tip.style.opacity=0;});
+  }
+}
+document.querySelectorAll('svg[data-k]').forEach(draw);
+
+function ratio(key,yr){const c=D.count[key]; if(!c) return {prev:0,cur:0,x:null};
+  const i=YRS.indexOf(yr), p=c[i-1]||0; return {prev:p,cur:c[i],x:p?(c[i]/p):null};}
+document.querySelectorAll('[data-mult]').forEach(e=>{
+  const a=e.dataset.mult.split('|'), r=ratio(a[0],+a[1]);
+  e.innerHTML=r.x?('전년 <b>×'+r.x.toFixed(1)+'</b>'):'전년 <b>0명</b>';
+});
+document.querySelectorAll('[data-delta]').forEach(e=>{
+  const a=e.dataset.delta.split('|'), r=ratio(a[0],+a[1]);
+  e.textContent=r.prev.toLocaleString()+' → '+r.cur.toLocaleString()+'명';
+});
+document.querySelectorAll('[data-multp]').forEach(e=>{
+  const a=e.dataset.multp.split('|'), r=ratio(a[0],+a[1]);
+  e.textContent=r.x?('×'+r.x.toFixed(1)):'신규';
+});
+</script>
